@@ -46,10 +46,15 @@ class BFS {
     }
 
     static void reconstructPath(Map<Cell,Cell> parent, Cell end, Cell start) {
-        Cell cur = end;
-        while (cur != start) {
-            cur.setPath();
-            cur = parent.get(cur);
-        }
+
+    Cell cur = parent.get(end); // start from the cell before end
+
+    while (cur != null && cur != start) {
+        cur.setPath();
+        cur = parent.get(cur);
+
+        try { Thread.sleep(30); } catch (InterruptedException e) {}
+    }
+}
     }
 }
