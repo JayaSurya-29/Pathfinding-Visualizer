@@ -6,48 +6,6 @@ class Dijkstra {
         Cell cell;
         int dist;
 
-        Node(Cell cell, int dist) {
-            this.cell = cell;
-            this.dist = dist;
-        }
-    }
-
-    static void run(Cell[][] grid, Cell start, Cell end) {
-        run(grid, start, end, 50);
-    }
-
-    static void run(Cell[][] grid, Cell start, Cell end, int delay) {
-
-        Map<Cell, Integer> dist = new HashMap<>();
-        Map<Cell, Cell> parent = new HashMap<>();
-        Set<Cell> visited = new HashSet<>();
-
-        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(n -> n.dist));
-
-        for (Cell[] row : grid) {
-            for (Cell cell : row) {
-                dist.put(cell, Integer.MAX_VALUE);
-            }
-        }
-
-        dist.put(start, 0);
-        pq.add(new Node(start, 0));
-
-        while (!pq.isEmpty()) {
-
-            Node node = pq.poll();
-            Cell current = node.cell;
-
-            if (visited.contains(current))
-                continue;
-import java.util.*;
-
-class Dijkstra {
-
-    static class Node {
-        Cell cell;
-        int dist;
-
         Node(Cell c, int d) {
             cell = c;
             dist = d;
@@ -91,6 +49,7 @@ class Dijkstra {
 
             visited.add(current);
 
+            // do not recolor start or end
             if (!current.start && !current.end)
                 current.setVisited();
 
