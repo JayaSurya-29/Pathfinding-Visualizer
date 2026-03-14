@@ -1,128 +1,159 @@
-/* Page Background */
-body {
-  margin: 0;
+/* ---------- PAGE ---------- */
+body{
+  margin:0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  background: linear-gradient(135deg,#1f3c72,#2a5298);
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-/* Control Buttons */
-button {
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(45deg, #4CAF50, #66bb6a);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+/* ---------- TITLE ---------- */
+h1{
+  color:white;
+  margin-top:20px;
+  margin-bottom:10px;
+  font-size:36px;
+  letter-spacing:1px;
+  text-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-button:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(45deg, #43a047, #5cb860);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+/* ---------- CONTROLS ---------- */
+.controls{
+  display:flex;
+  gap:15px;
+  margin-bottom:25px;
+  align-items:center;
 }
 
-button:active {
-  transform: scale(0.96);
+/* ---------- DROPDOWN ---------- */
+select{
+  padding:8px 12px;
+  border-radius:6px;
+  border:none;
+  font-size:15px;
+  outline:none;
+  box-shadow:0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* Grid Container */
-#grid {
-  display: grid;
-  grid-template-columns: repeat(20, 28px);
-  grid-template-rows: repeat(20, 28px);
-  gap: 3px;
-  padding: 20px;
-  border-radius: 15px;
+/* ---------- BUTTONS ---------- */
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
 
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
+  background:linear-gradient(45deg,#4CAF50,#66bb6a);
+  color:white;
+
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+
+  transition:all .25s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px rgba(0,0,0,0.35);
+}
+
+button:active{
+  transform:scale(.95);
+}
+
+/* ---------- GRID CONTAINER ---------- */
+#grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(20,28px);
+  grid-template-rows:repeat(20,28px);
+
+  gap:3px;
+  padding:25px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(15px);
 
   box-shadow:
-    0 8px 20px rgba(0,0,0,0.3),
-    inset 0 0 10px rgba(255,255,255,0.1);
+  0 15px 35px rgba(0,0,0,0.35),
+  inset 0 0 15px rgba(255,255,255,0.05);
 }
 
-/* Grid Cells */
-.cell {
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(0,0,0,0.2);
-  cursor: pointer;
+/* ---------- CELL ---------- */
+.cell{
 
-  transition: all 0.2s ease;
+  width:28px;
+  height:28px;
+
+  background:#f5f7fb;
+
+  border-radius:5px;
+
+  cursor:pointer;
+
+  transition:all .15s ease;
+
+  box-shadow:
+  inset 0 1px 2px rgba(0,0,0,0.15);
 }
 
-.cell:hover {
-  transform: scale(1.05);
-  background: white;
+.cell:hover{
+  transform:scale(1.08);
+  background:white;
 }
 
-/* Start Node */
-.start {
-  background: linear-gradient(45deg, #4CAF50, #81C784);
-  box-shadow: 0 0 10px rgba(76,175,80,0.7);
+/* ---------- START ---------- */
+.start{
+  background:#2ecc71;
+  box-shadow:0 0 10px rgba(46,204,113,.8);
 }
 
-/* End Node */
-.end {
-  background: linear-gradient(45deg, #f44336, #e57373);
-  box-shadow: 0 0 10px rgba(244,67,54,0.7);
+/* ---------- END ---------- */
+.end{
+  background:#e74c3c;
+  box-shadow:0 0 10px rgba(231,76,60,.8);
 }
 
-/* Walls */
-.wall {
-  background: linear-gradient(45deg, #2c3e50, #000);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+/* ---------- WALL ---------- */
+.wall{
+  background:#2c3e50;
 }
 
-/* Visited Cells Animation */
-.visited {
-  animation: visitedAnimation 0.35s ease forwards;
+/* ---------- VISITED ---------- */
+.visited{
+  animation:visit .3s forwards;
 }
 
-@keyframes visitedAnimation {
-  0% {
-    transform: scale(0.3);
-    background: #64b5f6;
+@keyframes visit{
+  0%{
+    transform:scale(.3);
+    background:#6ec6ff;
   }
-  50% {
-    background: #2196F3;
-  }
-  100% {
-    transform: scale(1);
-    background: #2196F3;
-  }
-}
-
-/* Final Path */
-.path {
-  animation: pathAnimation 0.4s ease forwards;
-}
-
-@keyframes pathAnimation {
-  0% {
-    transform: scale(0.5);
-    background: #fff176;
-  }
-  100% {
-    transform: scale(1);
-    background: #ffeb3b;
+  100%{
+    transform:scale(1);
+    background:#2196F3;
   }
 }
-.path {
-  background: #FFEB3B;
-  box-shadow: inset 0 0 10px rgba(255, 235, 59, 0.5);
+
+/* ---------- PATH ---------- */
+.path{
+  animation:path .35s forwards;
+}
+
+@keyframes path{
+  0%{
+    transform:scale(.5);
+    background:#fff176;
+  }
+  100%{
+    transform:scale(1);
+    background:#ffeb3b;
+  }
 }
