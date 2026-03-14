@@ -2,6 +2,16 @@ import java.util.*;
 
 class Dijkstra {
 
+    static class Node {
+        Cell cell;
+        int dist;
+
+        Node(Cell cell, int dist) {
+            this.cell = cell;
+            this.dist = dist;
+        }
+    }
+
     static void run(Cell[][] grid, Cell start, Cell end) {
         run(grid, start, end, 50);
     }
@@ -12,11 +22,8 @@ class Dijkstra {
         Map<Cell, Cell> parent = new HashMap<>();
         Set<Cell> visited = new HashSet<>();
 
-        PriorityQueue<Cell> pq = new PriorityQueue<>(
-                Comparator.comparingInt(dist::get)
-        );
+        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(n -> n.dist));
 
-        // Initialize distances
         for (Cell[] row : grid) {
             for (Cell cell : row) {
                 dist.put(cell, Integer.MAX_VALUE);
@@ -24,19 +31,17 @@ class Dijkstra {
         }
 
         dist.put(start, 0);
-        pq.offer(start);
+        pq.add(new Node(start, 0));
 
         while (!pq.isEmpty()) {
 
-            Cell current = pq.poll();
+            Node node = pq.poll();
+            Cell current = node.cell;
 
-            // Skip if already processed
             if (visited.contains(current))
                 continue;
 
             visited.add(current);
-
-            // Mark visited visually
             current.setVisited();
 
             if (current == end) {
@@ -56,7 +61,7 @@ class Dijkstra {
                     dist.put(neighbor, newDist);
                     parent.put(neighbor, current);
 
-                    pq.offer(neighbor);
+                    pq.add(new Node(neighbor, newDist));
                 }
             }
 
