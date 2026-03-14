@@ -1,103 +1,127 @@
+/* Page Background */
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
   margin: 0;
-  padding: 20px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  color: #333;
+  justify-content: center;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-#controls {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#algorithm {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 5px;
-  background: white;
-  color: #333;
-  font-size: 16px;
-  cursor: pointer;
-}
-
+/* Control Buttons */
 button {
-  padding: 8px 16px;
+  padding: 10px 20px;
+  margin: 10px;
   border: none;
-  border-radius: 5px;
-  background: #4CAF50;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #4CAF50, #66bb6a);
   color: white;
   font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 button:hover {
-  background: #45a049;
+  transform: translateY(-2px);
+  background: linear-gradient(45deg, #43a047, #5cb860);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
 
+button:active {
+  transform: scale(0.96);
+}
+
+/* Grid Container */
 #grid {
   display: grid;
-  grid-template-columns: repeat(20, 25px);
-  grid-template-rows: repeat(20, 25px);
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  grid-template-columns: repeat(20, 28px);
+  grid-template-rows: repeat(20, 28px);
+  gap: 3px;
+  padding: 20px;
+  border-radius: 15px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.3),
+    inset 0 0 10px rgba(255,255,255,0.1);
 }
 
+/* Grid Cells */
 .cell {
-  width: 25px;
-  height: 25px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #333;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.2);
   cursor: pointer;
-  transition: background 0.2s;
+
+  transition: all 0.2s ease;
 }
 
 .cell:hover {
-  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+  background: white;
 }
 
+/* Start Node */
 .start {
-  background: #4CAF50;
-  box-shadow: inset 0 0 10px rgba(76, 175, 80, 0.5);
+  background: linear-gradient(45deg, #4CAF50, #81C784);
+  box-shadow: 0 0 10px rgba(76,175,80,0.7);
 }
 
+/* End Node */
 .end {
-  background: #f44336;
-  box-shadow: inset 0 0 10px rgba(244, 67, 54, 0.5);
+  background: linear-gradient(45deg, #f44336, #e57373);
+  box-shadow: 0 0 10px rgba(244,67,54,0.7);
 }
 
+/* Walls */
 .wall {
-  background: #333;
-  box-shadow: inset 0 0 10px rgba(51, 51, 51, 0.5);
+  background: linear-gradient(45deg, #2c3e50, #000);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
 }
 
+/* Visited Cells Animation */
 .visited {
-  background: #2196F3;
-  box-shadow: inset 0 0 10px rgba(33, 150, 243, 0.5);
+  animation: visitedAnimation 0.35s ease forwards;
 }
 
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background: #64b5f6;
+  }
+  50% {
+    background: #2196F3;
+  }
+  100% {
+    transform: scale(1);
+    background: #2196F3;
+  }
+}
+
+/* Final Path */
+.path {
+  animation: pathAnimation 0.4s ease forwards;
+}
+
+@keyframes pathAnimation {
+  0% {
+    transform: scale(0.5);
+    background: #fff176;
+  }
+  100% {
+    transform: scale(1);
+    background: #ffeb3b;
+  }
+}
 .path {
   background: #FFEB3B;
   box-shadow: inset 0 0 10px rgba(255, 235, 59, 0.5);
